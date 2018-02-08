@@ -17,6 +17,21 @@ AWS - SNS 사용 예제
 
 4. 해당 서비스들은 **CloudWatch**를 통해 모니터링 및 로그 확인이 가능하다.
 
+5. SMS 전송기준
+	1. 각 SMS 메시지는 140바이트까지 포함할 수 있으며 가능 인코딩 체계에 따라 달라짐
+	 - 160자 GSM 문자 (사용하게될 인코딩)
+     - 140자 ASCII 문자
+     - 70자 UCS-2 문자
+
+    2. 크기 제한을 초과하는 메시지를 전송 시 분할되어 전송
+
+    3. 160자 이상 전송 시, 최초 문자 153자로 변경
+    	- ex) 170자 전송 : 첫번째 전송 153자 전송, 두번째 전송 17자 전송
+
+	4. 참조사이트
+	 - sms위키정보 : http://wiki.pchero21.com/wiki/Sms_service
+   	 - aws sms정보 : https://docs.aws.amazon.com/ko_kr/sns/latest/dg/sms_publish-to-phone.html
+
 ### 1. SNS를 사용하기 위한 설정
 
 1. AWS 회원가입, IAM 권한등록, 액세스 키 생성 (대부분의 aws 서비스의 공통사항으로 추후 문서화)
